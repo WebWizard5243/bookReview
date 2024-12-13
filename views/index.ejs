@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📕</title>
+    <link rel="stylesheet" href="/styles/content.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Roboto+Slab&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+    <div class="info">
+        <h1 >Md Kaif Nawaz Khurram</h1>
+        <h3> a summary of books that i have read or want to read.</h3>
+        <p> this website is build as a capstone project on my journey of web development <br> teaching me how to use and connect database to your website for users to store information.</p>
+    </div>
+    <form action="/add" class="add" method="post" >
+        <input type="submit" id="add" value="Add">
+    </form>
+    <% if(locals.books){ %>
+    <hr>
+    <form action="/" class="sort" method="post">
+        <select  id="sort"  name="arrange"> 
+          <option  value="id">newest</option>
+          <option  value="rating">best</option>
+          <option  value="title">title</option>
+          
+        </select>
+        <input type="submit" id="search" value="search">
+      </form>
+
+        <% for(let i =0 ;i < books.length; i++){ %>
+    <div class="books">
+        <img src="<%= books[i].cover %>"  alt="">
+        <div class="wow">
+        <a class="title" href="/bookDetails/<%= books[i].id %>"> <%= books[i].title + ' - BY '+ books[i].author%></a>
+        <small> Rating : <%= books[i].rating %></small>
+        <p><%= books[i].notes.slice(0,500) %></p>
+        <a href="/bookDetails/<%= books[i].id %>"> Read More </a>
+    </div>
+</div>
+    <% } %>
+    <% } else { %>
+        <h4> You haven't added any books yet</h4>
+        <% } %>
+    </div>
+</body>
+</html>

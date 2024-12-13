@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/content.css">
+</head>
+<body>
+    <div class="compose">
+    <% if(locals.isEdit){ %>
+    <form action="<%= `/edit/${locals.bookDetails?.id}` %>" class="align"  method="post"> 
+        <h1> Edit Book Info</h1>
+        <input type="text" name="bookName" class="arrange" value="<%= locals.bookDetails?.title %>" autocomplete="off" required>
+       <input type="text" name="author" class="arrange"  value = "<%= locals.bookDetails?.author %>" autocomplete="off" required>
+       <input type="number" name="isbn" class="arrange"  value="<%= locals.bookDetails?.isbn %>"  required>
+       <div class="time">
+       <input type="date" class="date"  name="readDate" required>
+       <input type="number" placeholder=" Rate it out of 10." class="date" max="10" min="1" value= "<%= locals.bookDetails?.rating %>" name="rating"  required>
+       </div>
+      <textarea name="notes" class="text" autocomplete="off"  placeholder="Write your notes here" ><%= locals.bookDetails?.notes%></textarea>
+      <input type="submit" class="submit-btn" value="Add">
+    </form>
+    <% } else { %>
+    <form action="/done" class="align" method="post">
+        <h1> Add Book Info </h1>
+        <input type="text" name="bookName" class="arrange" placeholder="Enter the Name of The Book" autocomplete="off" required>
+       <input type="text" name="author" class="arrange" placeholder="Enter the name of the author" autocomplete="off" required>
+       <input type="number" placeholder="ISBN" class="arrange" name="isbn"  required>
+       <div class="time">
+       <input type="date"  placeholder="" class="date"  name="readDate" required>
+       <input type="number" class="date" placeholder="Rate it out of 10." max="10" min="1" name="rating"  required>
+       </div>
+      <textarea name="notes" class="text" autocomplete="off" placeholder="Write your notes here" ></textarea>
+      <input type="submit" class="submit-btn" value="Add">
+    </form>
+    <% } %>
+</div>
+</body>
+</html>
